@@ -14,7 +14,10 @@ if [ -n "$WHITELIST" ]; then
   echo $WHITELIST | awk -v RS=, '{print}' > white-list.txt
 fi
 
-if [ -n "$ICON" -a ! -e server-icon.png ]; then
+if [ -e server-icon.png ] then
+  echo "Using server icon from local server-icon.png..."
+  cp /server-icon.png /data/server-icon.png
+elif [ -n "$ICON" ]; then
   echo "Using server icon from $ICON..."
   # Not sure what it is yet...call it "img"
   curl -sSL -o /tmp/icon.img $ICON
