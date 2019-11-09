@@ -14,7 +14,7 @@ if [ -n "$WHITELIST" ]; then
   echo $WHITELIST | awk -v RS=, '{print}' > white-list.txt
 fi
 
-if [ -e server-icon.png ] then
+if [ -e server-icon.png ]; then
   echo "Using server icon from local server-icon.png..."
   cp /server-icon.png /data/server-icon.png
 elif [ -n "$ICON" ]; then
