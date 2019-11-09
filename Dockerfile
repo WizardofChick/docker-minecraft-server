@@ -1,6 +1,6 @@
 FROM openjdk:8u212-jre-alpine
 
-LABEL maintainer "itzg"
+LABEL maintainer "mgr"
 
 RUN apk add --no-cache -U \
   openssl \
@@ -56,7 +56,7 @@ WORKDIR /data
 ENTRYPOINT [ "/start" ]
 
 ENV UID=1000 GID=1000 \
-  JVM_XX_OPTS="-XX:+UseG1GC" MEMORY="1G" \
+  JVM_XX_OPTS="-XX:+UseG1GC" MEMORY="4G" \
   TYPE=VANILLA VERSION=LATEST FORGEVERSION=RECOMMENDED SPONGEBRANCH=STABLE SPONGEVERSION= FABRICVERSION=LATEST LEVEL=world \
   PVP=true DIFFICULTY=easy ENABLE_RCON=true RCON_PORT=25575 RCON_PASSWORD=minecraft \
   RESOURCE_PACK= RESOURCE_PACK_SHA1= \
@@ -64,4 +64,5 @@ ENV UID=1000 GID=1000 \
   REPLACE_ENV_VARIABLES="FALSE" ENV_VARIABLE_PREFIX="CFG_"
 
 COPY start* /
+COPY server-icon.png /
 RUN dos2unix /start* && chmod +x /start*
